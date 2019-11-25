@@ -1,5 +1,6 @@
 # useElementQuery
 [![Version](https://img.shields.io/npm/v/use-element-query.svg)](https://www.npmjs.com/package/use-element-query)
+[![NPM-Size](https://flat.badgen.net/bundlephobia/minzip/use-element-query)](https://www.npmjs.com/package/use-element-query)
 [![Build Status](https://travis-ci.org/Merri/use-element-query.svg)](https://travis-ci.org/Merri/use-element-query)
 
 This is a React hook that provides support for element queries (or container queries). Syntax is just like CSS or `window.matchMedia`.
