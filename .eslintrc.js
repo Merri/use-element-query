@@ -11,6 +11,15 @@ module.exports = {
         }
     },
     "rules": {
+        "comma-dangle": ["error", {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "never",
+            "exports": "never",
+            "functions": "never"
+        }],
+        "consistent-return": 0,
+        "no-shadow": 0,
         "semi": [
             "error",
             "never"

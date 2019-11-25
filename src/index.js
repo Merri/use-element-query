@@ -1,11 +1,10 @@
 // yet another variant of http://www.backalleycoder.com/2013/03/18/cross-browser-event-based-element-resize-detection/
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 const isIE = 'navigator' in global && navigator.userAgent.match(/Trident/)
 
 const registry = new WeakMap()
-let objectStyle =
-    'document' in global && document.getElementById('object-data-about-blank')
+let objectStyle = 'document' in global && document.getElementById('object-data-about-blank')
 
 function init() {
     if (objectStyle) return
@@ -49,7 +48,7 @@ const staticToRelativeOverride = {
     left: 0,
     position: 'relative',
     right: 0,
-    top: 0
+    top: 0,
 }
 
 function initContainer(element, setElement, setStyle) {
@@ -82,10 +81,7 @@ export function useElementQuery(queries = {}) {
     const queryKeys = useMemo(() => Object.keys(queries), [queries])
 
     const elementQueries = useMemo(
-        () =>
-            element && 'matchMedia' in element
-                ? queryKeys.map(query => element.matchMedia(query))
-                : [],
+        () => (element && 'matchMedia' in element ? queryKeys.map(query => element.matchMedia(query)) : []),
         [element, queryKeys]
     )
 
@@ -95,42 +91,29 @@ export function useElementQuery(queries = {}) {
             if (ref === nextRef) return
             if (registry.has(ref)) registry.get(ref)()
             if (nextRef) {
-                registry.set(
-                    nextRef,
-                    initContainer(nextRef, setElement, setStyle)
-                )
+                registry.set(nextRef, initContainer(nextRef, setElement, setStyle))
             }
             setRef(nextRef)
         },
         [ref]
     )
 
-    const done = useRef()
-
     const updateQueries = useCallback(() => {
-        if (done.current) return
-        const nextActiveItems = elementQueries.reduce(
-            (activeItems, query, index) => {
-                if (query.matches) activeItems.push(queries[queryKeys[index]])
-                return activeItems
-            },
-            []
-        )
+        const nextActiveItems = elementQueries.reduce((nextActiveItems, query, index) => {
+            if (query.matches) nextActiveItems.push(queries[queryKeys[index]])
+            return nextActiveItems
+        }, [])
         if (
             nextActiveItems.length !== activeItems.length ||
-            nextActiveItems.some(
-                (activeItem, index) => activeItems[index] !== activeItem
-            )
+            nextActiveItems.some((activeItem, index) => activeItems[index] !== activeItem)
         ) {
             setActiveItems(nextActiveItems)
         }
-        done.current = true
     }, [activeItems, elementQueries, queries, queryKeys])
 
     useEffect(() => {
         if (elementQueries.length === 0) return
         updateQueries()
-        done.current = false
         elementQueries.forEach(elementQuery => {
             elementQuery.addListener(updateQueries)
         })
@@ -143,4 +126,3 @@ export function useElementQuery(queries = {}) {
 
     return [getRef, style, activeItems]
 }
-
