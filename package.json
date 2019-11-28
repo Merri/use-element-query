@@ -1,7 +1,7 @@
 {
   "name": "use-element-query",
-  "description": "React hook that allows treating elements as matchMedia containers by using an additional object DOM element",
-  "version": "1.0.0",
+  "description": "These React hooks make it easy for you to match with your media queries: be it the whole viewport or a container element",
+  "version": "1.1.0",
   "author": "Vesa Piittinen <vesa.piittinen@gmail.com>",
   "bugs": {
     "url": "https://github.com/merri/use-element-query/issues"
@@ -50,7 +50,8 @@
     "hooks",
     "container query",
     "element query",
-    "matchMedia"
+    "matchMedia",
+    "responsive"
   ],
   "license": "MIT",
   "lint-staged": {
