@@ -1,7 +1,8 @@
-# useMediaQuery and useElementQuery
+# **DEPRECATED!**<br/>&raquo; Have a look at [`react-use-queries`](https://github.com/merri/react-use-queries) instead!
+
+## useMediaQuery and useElementQuery
 [![Version](https://img.shields.io/npm/v/use-element-query.svg)](https://www.npmjs.com/package/use-element-query)
 [![NPM-Size](https://flat.badgen.net/bundlephobia/minzip/use-element-query)](https://www.npmjs.com/package/use-element-query)
-[![Build Status](https://travis-ci.org/Merri/use-element-query.svg)](https://travis-ci.org/Merri/use-element-query)
 
 These React hooks make it easy for you to match with your media queries.
 
